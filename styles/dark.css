@@ -1,0 +1,131 @@
+/* Dark Stylesheet */
+
+body  { color: #eee; background: #444 url(dark/bg-tile.jpg) repeat left top; }
+h1, h2, h3, h4, h5, h6, #header #headlines li .headline-title a, .post .title a, .page .title a  { color: #fff; text-shadow: 1px 1px 0 #000; }
+
+a, #recent-news-filter li a.active, #tabs ul.wooTabs li a:hover, #comments .comment.bypostauthor .comment-head .name  { color: #0b9160; }
+a:hover { color: #126b4b; }
+
+#top { background: url(dark/bg-topnav.png) repeat-x left bottom; }
+#top .nav a  { color: #ccc; text-shadow: 1px 1px 0 #000; }
+#navigation .nav  { background: #333; background: rgba(0,0,0,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(255,255,255,0.1); -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(255,255,255,0.1); -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(255,255,255,0.1); }
+.ie #navigation .nav  { border-color: #000!important; }
+.ie #navigation  { border-color: #222!important; }
+.nav a  { color: #eee; text-shadow: 1px 1px 0 #000; }
+
+.nav a:hover, 
+.nav li.current_page_item a, 
+.nav li.current_page_parent a,
+.nav li.current-menu-ancestor a,
+.nav li.current-cat a,
+.nav li.current-menu-item a,
+.nav li.sfHover  { background: #444; }
+
+.nav li ul  { background: #222; border: none; }
+#navigation .nav li ul li a { border-top:1px solid #000; border-bottom:1px solid #444; }
+.nav li ul li a  { color: #fff; }
+.nav li ul li a:hover  { background: #f1f1f1!important; background: rgba(0,0,0,0.3)!important; }
+
+#header #headlines li .category a, #header #headlines li .comments a, #header #headlines li .comments, .post-meta .category a:link, .post-meta .category a:visited, .post-meta .date, h2.section-title a.subscribe, #recent-news-filter span, .widget ul li a, .post-more .comments a, #footer-widgets ul li a, #footer, #comments h3 a, .archive_header .catrss a, .woo-pagination a.page-numbers, #connect-related .related-inner ul li a, #post-author .profile-header a  { color: #eee; }
+.post-meta .category a:hover  { color: #aaa; }
+#recent-news-filter li a  { color: #aaa; }
+
+#breadcrumbs, .post .tags, .post .tags a  { color: #eee; text-shadow: 1px 1px 0 #000; }
+
+#post-entries  { border: 1px solid #777; background: #333; background: rgba(0,0,0,0.4); }
+#post-entries a  { color: #eee; text-shadow: 1px 1px 0 #000; }
+
+#comments .comment.bypostauthor { border-top: 2px solid #0b9160; }
+.woo-pagination .current, .woo-pagination a:hover  { background-color: #0b9160;  }
+
+.post-more  { text-shadow: 1px 1px 0 rgba(0,0,0,0.3); }
+
+#post-author .profile-content  { border-top: 1px solid #333; }
+
+.entry .wp-caption-text, #post-author .profile-header  { text-shadow: 1px 1px 0 #000; }
+#post-gallery .slides_container .slide .photo-caption, #post-gallery .slides_container .image .photo-caption  { color: #000; }
+
+#footer-widgets ul, #footer-widgets .widget_woo_flickr .wrap, #footer-widgets .widget_tag_cloud .tagcloud, #footer-widgets .textwidget  { border-top: 1px solid #333; }
+
+.searchform input.s  { background-color: #222; color: #eee; border: 1px solid rgba(0,0,0,0.8)!important; }
+
+.post-more .read-more a { background-image: url("dark/ico-readmore.png"); }
+#tabs ul.wooTabs li a:hover, #recent-news-filter li a.active { background-image: url(dark/ico-recent-news-filter-active.png); }
+.post .tags  { background-image: url(dark/ico-tags.png); }
+.post-more .comments a  { background-image: url(dark/ico-comments.png); }
+#comments h3 a, h2.section-title a.subscribe, .archive_header .catrss a, #header .rss a.button span  { background-image: url(dark/ico-rss.png); }
+#comments ul.children {background-image: url(dark/ico-comment-thread.png); }
+#post-author .profile-header a { background-image: url("dark/ico-author-posts.png"); }
+
+
+#navigation, #header #headlines, #header #headlines li .headline-title, #recent-news-filter, .archive-layout, #more-news, #footer-wrap, .post, .page .layout-std .entry, #content.special-single .post .column-clear, #single-ad, #post-author, #post-author .profile-header, #post-author .profile-image, .widget ul, .widget_woo_flickr a img, .widget_woo_embedwidget .widget-video-unit, #gallery .slides_container .slide img, .widget_woo_blogauthorinfo .avatar, #tabs ul.wooTabs, #tabs .inside li img.avatar, #tabs .inside li img.thumbnail, #comments .comment-head, #comments  .avatar img, #commentform, .page-template-template-archives-php .page .entry ul, .page-template-template-sitemap-php .page .entry ul, .page-template-template-archives-php .page .entry ul li, .page-template-template-sitemap-php .page .entry ul li, .page-template-template-blog-php .title, #archives .archives_list li, #archives .archives_list li:first-child { border-color: #d6d6d6; border-color: rgba(255,255,255,0.1); }
+
+#navigation .nav, .nav li ul, #header #headlines li .meta, h2.section-title, .archive_header, #footer, .archive_header, .post-meta, .post .tags, .post-more, .widget h3, .searchform input.s, #comments h3, #respond h3, #archives .archives_list, #connect-related h3  { border-color: #bababa; border-color: rgba(255,255,255,0.3); }
+
+#breadcrumbs, .post-more .read-more, .widget ul li, .widget_woo_twitter p, #footer-widgets .widget_woo_twitter ul li, #tabs, #tabs .inside li  { border-color: #919191; border-color: rgba(255,255,255,0.5); }
+
+.post .title, .page .title, #comments .comment { border-top: 1px solid #d6d6d6; border-bottom: 1px solid #bababa; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.3); }
+
+.widget_woo_search .search_main, .widget_woo_flickr .wrap, .widget_woo_blogauthorinfo .author-wrap, .widget_tag_cloud .tagcloud, .widget_text .textwidget, #gallery, #connect-related .connect-inner, #connect-related .related-inner  { border-top: 1px solid #d6d6d6; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px dotted #919191; border-bottom: 1px dotted rgba(255,255,255,0.5); }
+
+
+a.button, 
+a.comment-reply-link, 
+#commentform #submit,
+.submit {
+	border: 1px solid #bababa;
+	border: 1px solid rgba(0,0,0,0.9);
+	color: #eee !important;
+	text-shadow: 1px 1px 0 #000;
+	
+	/*Background*/
+	background: #333333; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #333333),
+					color-stop(1, #000000)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#333333 20%,
+					#000000 100%
+				);
+				
+	/*Box shadow*/
+	-webkit-box-shadow: inset 1px 1px 0 #333 /*Top*/, 
+						inset -1px -1px 0 #333 /*Shine*/;
+	-moz-box-shadow: inset 1px 1px 0 #333 /*Top*/, 
+					 inset -1px -1px 0 #333 /*Shine*/;
+	box-shadow: inset 1px 1px 0 #333 /*Top*/, 
+				inset -1px -1px 0 #333 /*Shine*/;
+}
+
+a.button:hover, 
+a.button.hover, 
+a.button.active,
+a.comment-reply-link:hover, 
+#commentform #submit:hover,
+.submit:hover {
+	/*Background*/
+	background: #000000; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #000000),
+					color-stop(1, #333333)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#000000 20%,
+					#333333 100%
+				);
+}
+
+a.button:active, a.button.active  { border-color: #000;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+ }

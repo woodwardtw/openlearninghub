@@ -1,0 +1,76 @@
+/* Green Stylesheet */
+
+body  { background: #e9f6e8 url(green/bg-tile.jpg) repeat left top; }
+a, #recent-news-filter li a.active, #tabs ul.wooTabs li a:hover, #comments .comment.bypostauthor .comment-head .name  { color: #126b4b; }
+#comments .comment.bypostauthor { border-top: 2px solid #126b4b; }
+.woo-pagination .current, .woo-pagination a:hover  { background-color: #126b4b; }
+a:hover { color: #063c28; }
+#navigation .nav  { background: #fff; }
+.nav a:hover, 
+.nav li.current_page_item a, 
+.nav li.current_page_parent a,
+.nav li.current-menu-ancestor a,
+.nav li.current-cat a,
+.nav li.current-menu-item a,
+.nav li.sfHover  { background: #cce4ca; }
+.post-more .read-more a { background-image: url("green/ico-readmore.png"); }
+#tabs ul.wooTabs li a:hover, #recent-news-filter li a.active { background-image: url(green/ico-recent-news-filter-active.png); }
+
+a.button, 
+a.comment-reply-link, 
+#commentform #submit,
+.submit {
+	border: 1px solid #bababa;
+	border: 1px solid rgba(0,0,0,0.2);
+	
+	/*Background*/
+	background: #d9f3d6; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #d9f3d6),
+					color-stop(1, #b5d2b3)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#d9f3d6 20%,
+					#b5d2b3 100%
+				);
+				
+	/*Box shadow*/
+	-webkit-box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+						inset -1px -1px 0 #fff /*Shine*/;
+	-moz-box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+					 inset -1px -1px 0 #fff /*Shine*/;
+	box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+				inset -1px -1px 0 #fff /*Shine*/;
+}
+
+a.button:hover, 
+a.button.hover, 
+a.button.active,
+a.comment-reply-link:hover, 
+#commentform #submit:hover,
+.submit:hover {
+	/*Background*/
+	background: #b5d2b3; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #b5d2b3),
+					color-stop(1, #d9f3d6)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#b5d2b3 20%,
+					#d9f3d6 100%
+				);
+}
+
+a.button:active, a.button.active  { border-color: #87ba83;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+ }

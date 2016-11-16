@@ -1,0 +1,105 @@
+*** Editorial Changelog ***
+
+2013.01.14 - version 1.4.8
+ * /includes/theme-options.php - Commented out unused theme options for displaying the thumbnail on single post screens. This is controlled by the gallery options per-post.
+
+2012.12.11 - version 1.4.7
+ * /includes/theme-options.php - Removed redundant word "Options" from selected theme options section headings. Grouped options into subheadings where applicable.
+ * /includes/js/general.js - Amended "recent news" JavaScript logic in an attempt to cater for erratic clicking on the "recent news" categories switcher.
+
+2012.10.02 - version 1.4.6
+ * single-columns.php - Cater for pages where the "Full Width" page template has been set and a content column layout has been specified (hide sidebar and make comments area full width).
+
+2012.07.06 - version 1.4.5
+ * style.css - Fixed height for single page post gallery slider.
+
+2012.03.19 - version 1.4.4
+ * - REQUIRES WOOFRAMEWORK V5.3.3 OR NEWER -
+ * /includes/css/meta-options.css - Adjusted styling of custom fields tabs to accommodate the newly-added WooFramework tabs bar.
+ * /includes/js/theme-options.js - Adjusted the custom fields tabs logic to accommodate the newly-added WooFramework tabs bar.
+
+2012.03.05 - version 1.4.3
+ * /includes/theme-actions.php - Added !important to the body - background-image custom setting to keep from being overridden when using custom styles.
+
+2012.01.19 - version 1.4.2
+ * /includes/recent-news.php - Make sure to use tax_query instead of cat in the latest news from categories query, as well as to pass an array of the category IDs instead of a string.
+
+2012.01.12 - version 1.4.1
+ * includes/slider.php - added noheight=true to the slide image to fix an IE height issue
+
+2011.11.28 - version 1.4
+ * includes/theme-widgets.php, 
+   includes/widgets/widget-woo-ad125.php - added 125 ad widget
+ * includes/theme-options.php - added 125 ad options
+ * style.css - added 125 widget styling
+
+2011.11.22 - version 1.3.8
+ * /includes/js/general.js - Moved column positioning correction logic into the woo_adjust_column_margins() function. Call function on load.
+ * /includes/gallery.php - Call woo_adjust_column_margins() function once slides have loaded on the single posts.
+
+2011.11.14 - version 1.3.7
+ * images - Adjusted size for ico-social-googleplus.png
+ * /includes/theme-functions.php - Added Google+ to the subscribe and connect function.
+
+2011.11.04 - version 1.3.6
+ * style.css - Removed styling for subscribe and connect widget. Hide post gallery until SlidesJS has loaded all slides.
+ * /includes/theme-actions.php - Removed h3 title class on subscribe connect function. Added custom typography to page titles.
+ * /includes/gallery.php - Add JavaScript logic on SlidesJS slidesLoaded to fadeIn and auto-correct the height of the post gallery slider.
+
+2011.10.20 - version 1.3.5
+ * /includes/recent-news.php - Integrate "Subscribe via RSS" link and resolve "posts in category" display issue (replace category__in with cat).
+
+2011.10.18 - version 1.3.4
+ * /includes/gallery.php - Use woo_image() if dynamic image resize is enabled. Images in post gallery now respect the image crop alignment value set for the post being viewed.
+
+2011.10.13 - version 1.3.3
+ * /includes/recent-news.php - Change the "Latest" link on the "Recent News" category navigation, if the custom homepage is not on the default WordPress homepage setting.
+
+2011.09.06 - version 1.3.2
+ * single-columns.php - Only display post author box if on a "post" (not a "page").
+
+2011.09.01 - version 1.3.1
+ * /includes-recent-news.php - Make sure the "Exclude featured slider posts from Latest News" logic works as per theme option.
+
+2011.08.04 - version 1.3.0
+ * /includes/recent-news.php - Added logic for "display latest posts only from specified categories" theme option.
+ * /includes/theme-options.php - Added "display latest posts only from specified categories" theme option.
+
+2011.07.20 - version 1.2.4
+ * comments.php - Resolved bug where website URL was being used as the default value for Twitter and Facebook fields after a user leaves a comment.
+ * single.php, 
+   single-columns.php - Added post "edit" link.
+
+2011.07.19 - version 1.2.3
+ * index.php - Optimised slider inclusion logic.
+ * /includes/recent-news.php - Only exclude the slider posts if the slider is enabled.
+ * /includes/slider.php - Added class to work with dynamic slide content positioning.
+ * /includes/theme-functions.php - Updated image dimension function to pull correct dimensions for posts with title spanning full width.
+
+2011.07.07 - version 1.2.2
+ * style.css - Updated CSS class for active slide in SlidesJS pagination bar.
+ * /includes/theme-actions.php - Updated "currentClass" setting on homepage slider. Updated the currSlideNumber variable to look for the new "activeslide" CSS class on the pagination.
+ * /includes/theme-functions.php - Updated column dimension getter to include full width single column layout.
+ * /includes/theme-options.php - Include full width single column layout post meta option.
+ 
+
+2011.07.06 - version 1.2.1
+ * /includes/theme-functions.php - Make sure the "Related Posts" block doesn't display on "attachment" pages.
+
+2011.07.05 - version 1.2
+ * /includes/theme-actions.php - Apply the Custom Typography colour for the post title to the post title's anchor tag. Replace jQuery.Cycle with SlidesJS for the homepage slider.
+ * /includes/slider.php - Updated PHP logic for the slider to integrate closer with SlidesJS.
+ * style.css - Added ".hidden" class for use with the slider pagination.
+ * /includes/theme-options.php - Added theme options for SlidesJS, as well as removed post meta option for slider transition.
+ * /includes/theme-js.php - Removed call to jQuery.Cycle and re-factored call to SlidesJS.
+
+2011.07.04 - version 1.1
+ * style.css - Added styling for the embedded video in posts, as well as tweaks for the homepage slider.
+ * /includes/gallery.php - Cater for embedded video functionality.
+ * /includes/theme-options.php - Added post meta options to toggle embedded video in posts, as well as autoHeight toggle theme option.
+ * /includes/slider.php - Added "hidden" class to slider pager items, to ensure they don't display until the slider has been loaded.
+ * /includes/theme-functions.php - Updated dimensions function to return the layout-std values by default, if no layout option is set.
+ * /includes/theme-actions.php - Added autoHeight toggle and fixed height functionality to the homepage slider.
+
+2011.06.28 - version 1.0
+ * First release!

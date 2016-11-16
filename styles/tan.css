@@ -1,0 +1,76 @@
+/* Tan Stylesheet */
+
+body  { background: #f6f1e9 url(tan/bg-tile.jpg) repeat left top; }
+a, #recent-news-filter li a.active, #tabs ul.wooTabs li a:hover, #comments .comment.bypostauthor .comment-head .name  { color: #67573d; }
+#comments .comment.bypostauthor { border-top: 2px solid #67573d; }
+.woo-pagination .current, .woo-pagination a:hover  { background-color: #67573d; }
+a:hover { color: #352814; }
+#navigation .nav  { background: #fff; }
+.nav a:hover, 
+.nav li.current_page_item a, 
+.nav li.current_page_parent a,
+.nav li.current-menu-ancestor a,
+.nav li.current-cat a,
+.nav li.current-menu-item a,
+.nav li.sfHover  { background: #ded6ca; }
+.post-more .read-more a { background-image: url("tan/ico-readmore.png"); }
+#tabs ul.wooTabs li a:hover, #recent-news-filter li a.active { background-image: url(tan/ico-recent-news-filter-active.png); }
+
+a.button, 
+a.comment-reply-link, 
+#commentform #submit,
+.submit {
+	border: 1px solid #bababa;
+	border: 1px solid rgba(0,0,0,0.2);
+	
+	/*Background*/
+	background: #eee5d7; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #eee5d7),
+					color-stop(1, #cbc0ae)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#eee5d7 20%,
+					#cbc0ae 100%
+				);
+				
+	/*Box shadow*/
+	-webkit-box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+						inset -1px -1px 0 #fff /*Shine*/;
+	-moz-box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+					 inset -1px -1px 0 #fff /*Shine*/;
+	box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+				inset -1px -1px 0 #fff /*Shine*/;
+}
+
+a.button:hover, 
+a.button.hover, 
+a.button.active,
+a.comment-reply-link:hover, 
+#commentform #submit:hover,
+.submit:hover {
+	/*Background*/
+	background: #cbc0ae; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #cbc0ae),
+					color-stop(1, #eee5d7)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#cbc0ae 20%,
+					#eee5d7 100%
+				);
+}
+
+a.button:active, a.button.active  { border-color: #8b795d;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+ }

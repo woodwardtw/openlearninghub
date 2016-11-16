@@ -1,0 +1,9 @@
+.mceWooColumn {
+	background: #ffffff url(../img/column_break.gif) no-repeat right top;
+	border: 1px;
+	border-top: 1px dotted #CCC;
+	display: block;
+	height: 12px;
+	margin-top: 15px;
+	width: 100%;
+}

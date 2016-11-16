@@ -1,0 +1,3 @@
+18801
+8fd9641b10cda45d832e078a998b73ec
+editorial/style.css

@@ -1,0 +1,70 @@
+/* Blue Stylesheet */
+
+body  { background: #d9e8f1 url(blue/bg-tile.jpg) repeat left top; }
+#navigation .nav  { background: #e6ebf2; background: rgba(255,255,255,0.2); }
+.nav a:hover, 
+.nav li.current_page_item a, 
+.nav li.current_page_parent a,
+.nav li.current-menu-ancestor a,
+.nav li.current-cat a,
+.nav li.current-menu-item a,
+.nav li.sfHover  { background: #c5dceb; }
+
+a.button, 
+a.comment-reply-link, 
+#commentform #submit,
+.submit {
+	border: 1px solid #bababa;
+	border: 1px solid rgba(0,0,0,0.2);
+	
+	/*Background*/
+	background: #eff3f8; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #eff3f8),
+					color-stop(1, #e6ebf2)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#eff3f8 20%,
+					#e6ebf2 100%
+				);
+				
+	/*Box shadow*/
+	-webkit-box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+						inset -1px -1px 0 #fff /*Shine*/;
+	-moz-box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+					 inset -1px -1px 0 #fff /*Shine*/;
+	box-shadow: inset 1px 1px 0 #fff /*Top*/, 
+				inset -1px -1px 0 #fff /*Shine*/;
+}
+
+a.button:hover, 
+a.button.hover, 
+a.button.active,
+a.comment-reply-link:hover, 
+#commentform #submit:hover,
+.submit:hover {
+	/*Background*/
+	background: #e6ebf2; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #e6ebf2),
+					color-stop(1, #eff3f8)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#e6ebf2 20%,
+					#eff3f8 100%
+				);
+}
+
+a.button:active, a.button.active  { border-color: #c0ccdd;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+ }

@@ -1,0 +1,35 @@
+.dataTables_info {
+	background-color: #cacaca;
+	padding-bottom:10px;
+
+}
+
+.dataTables_paginate paging_full_numbers {
+	background-color: #cacaca;
+
+}
+
+#table_format_first {
+	padding: 5px 10px 5px 10px;
+}
+
+#table_format_previous {
+	padding: 5px 10px 5px 10px;
+}
+
+#table_format_next {
+	padding: 5px 10px 5px 10px;
+}
+
+#table_format_last {
+	padding: 5px 10px 5px 10px;
+}
+
+.paginate_button {
+	padding: 5px 10px 5px 10px;
+}
+
+.paginate_active {
+	padding: 5px 10px 5px 10px;
+	background:blue;
+}

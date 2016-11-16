@@ -1,0 +1,76 @@
+/* Purple Stylesheet */
+
+body  { background: #f6e9f2 url(purple/bg-tile.jpg) repeat left top; }
+a, #recent-news-filter li a.active, #tabs ul.wooTabs li a:hover, #comments .comment.bypostauthor .comment-head .name  { color: #9b5285; }
+#comments .comment.bypostauthor { border-top: 2px solid #9b5285; }
+.woo-pagination .current, .woo-pagination a:hover  { background-color: #9b5285; }
+a:hover { color: #692955; }
+#navigation .nav  { background: #fff; background: rgba(255,255,255,0.7); }
+.nav a:hover, 
+.nav li.current_page_item a, 
+.nav li.current_page_parent a,
+.nav li.current-menu-ancestor a,
+.nav li.current-cat a,
+.nav li.current-menu-item a,
+.nav li.sfHover  { background: #f0d7e8; }
+.post-more .read-more a { background-image: url("purple/ico-readmore.png"); }
+#tabs ul.wooTabs li a:hover, #recent-news-filter li a.active { background-image: url(purple/ico-recent-news-filter-active.png); }
+
+a.button, 
+a.comment-reply-link, 
+#commentform #submit,
+.submit {
+	border: 1px solid #bababa;
+	border: 1px solid rgba(0,0,0,0.1);
+	
+	/*Background*/
+	background: #f4daf4; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #f4daf4),
+					color-stop(1, #e5b8d7)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#f4daf4 20%,
+					#e5b8d7 100%
+				);
+				
+	/*Box shadow*/
+	-webkit-box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5) /*Top*/, 
+						inset -1px -1px 0 rgba(255,255,255,0.5) /*Shine*/;
+	-moz-box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5) /*Top*/, 
+					 inset -1px -1px 0 rgba(255,255,255,0.5) /*Shine*/;
+	box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5) /*Top*/, 
+				inset -1px -1px 0 rgba(255,255,255,0.5) /*Shine*/;
+}
+
+a.button:hover, 
+a.button.hover, 
+a.button.active,
+a.comment-reply-link:hover, 
+#commentform #submit:hover,
+.submit:hover {
+	/*Background*/
+	background: #e5b8d7; /*Fallback*/
+	background: -webkit-gradient(
+					linear,
+					left top,
+					left bottom,
+					color-stop(.2, #e5b8d7),
+					color-stop(1, #f4daf4)
+				);
+	background: -moz-linear-gradient(
+					center top,
+					#e5b8d7 20%,
+					#f4daf4 100%
+				);
+}
+
+a.button:active, a.button.active  { border-color: #b877b8;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+ }
