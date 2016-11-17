@@ -274,7 +274,8 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover  {text-de
 #header .rss a.button span  { padding: 0 20px 0 0; background: url(images/ico-rss.png) no-repeat right 2px; }
 #logo  { float:left; width: 500px; }
 #logo img  { }
-#logo .site-title, #logo .site-description  { font-family:Georgia, serif; color: #000; display:none;  }
+#logo .site-title { font-family:Georgia, serif; color: #000; display:none;  }
+#logo .site-description {display: block;}
 #logo .site-title  { margin: 25px 0 0 0; }
 #logo .site-title a { color:#222; font-size:40px; line-height:40px; text-transform:none; font-weight:normal; text-decoration:none; }
 #logo .site-title a:hover { text-decoration:underline; }

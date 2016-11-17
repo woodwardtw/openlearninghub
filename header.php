@@ -51,7 +51,6 @@
 			<a href="<?php echo home_url( '/' ); ?>" title="<?php bloginfo( 'description' ); ?>">
 				<img src="<?php if ($logo) echo $logo; else { echo get_template_directory_uri(); ?>/images/logo<?php if ( $woo_options['woo_header_align'] == 'alignleft' ) { ?>-left<?php } ?>.png<?php } ?>" alt="<?php bloginfo( 'name' ); ?>" />
 			</a>
-			     <span class="description"><?php echo $blog_title = get_bloginfo( 'description' ); ?> </span>     
         <?php } ?> 
         
         <?php if( is_singular() && ! is_front_page() ) { ?>
