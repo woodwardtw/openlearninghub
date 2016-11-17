@@ -30,10 +30,21 @@ require_once ($includes_path . 'woo-column-generator/woo-column-generator.php' )
 /*-----------------------------------------------------------------------------------*/
 
 
+/* ----  mobile menu script  ------ */
 /* ----- enque scripts for Google+ */
 
-wp_register_script( 'tv_google_plus', 'https://apis.google.com/js/plusone.js' );
-wp_enqueue_script( 'tv_google_plus' );
+function add_theme_scripts() {
+  
+  wp_enqueue_script( 'mobile_menu', get_template_directory_uri() . '/functions/js/responsive-menu.js', array ( 'jquery' ), 1.1, true);
+  wp_enqueue_script( 'tv_google_plus', 'https://apis.google.com/js/plusone.js' );
+
+}
+add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
+
+
+
+
+
 
 
 /* ----- return a specific character count for any content (e.g. excerpts based on chars) */

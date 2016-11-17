@@ -1047,4 +1047,27 @@ a[href$='.twitter'], a.twitter {
 #slides {width: 100%;}
 
 #sidebar {width: 100%;}
+
+  ul.nav.responsive {position: relative;}
+  ul.nav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.nav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.nav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width:767px) {
+  ul.nav li:not(:first-child) {display: none;}
+  ul.nav li.icon {
+    float: right;
+    display: inline-block;
+  }
 }
