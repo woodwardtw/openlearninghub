@@ -1051,7 +1051,7 @@ a[href$='.twitter'], a.twitter {
 	background: transparent url(images/ico-social-twitter.png) no-repeat center right;
 }
 
-@media only screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
 #main.fullwidth, .layout-full #main, .col-full { width: 100%; margin:10px; }
 #navigation {width: 100%;}
 
