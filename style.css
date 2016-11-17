@@ -349,7 +349,7 @@ h2.section-title a.subscribe   { float: right; padding: 0 14px 0 0; text-transfo
 #recent-news-filter li a.active  { background: url(images/ico-recent-news-filter-active.png) no-repeat center bottom; color: #006699; font-weight: bold; }
 #recent-news.archive-layout  { border: none; padding: 0; }
 .archive-layout  { padding-top: 30px; border-style: solid; border-width: 1px 0 0; }
-.archive-layout .post  { float: left; width: 295px; margin: 0 20px 40px 0; }
+.archive-layout .post  { float: left; width: 45%; margin: 0 20px 40px 0; }
 .archive-layout .post .title  { padding: 15px 0 10px; font-size: 22px; }
 
 .woo-loader { display: block; position: absolute; margin-top: 100px; }
@@ -1035,4 +1035,12 @@ a[href$='.rss'], a[href$='.atom'], a.rss {
 a[href$='.twitter'], a.twitter { 
 	padding: 5px 20px 5px 0;
 	background: transparent url(images/ico-social-twitter.png) no-repeat center right;
+}
+
+@media only screen and (max-width: 767px) {
+#main.fullwidth, .layout-full #main, .col-full { width: 100%; margin:10px; }
+#navigation {width: 100%;}
+.archive-layout .post  { float: left; width: 90%; margin: 0 20px 40px 0; }
+
+#slides {width: 100%}
 }
