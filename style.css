@@ -1,9 +1,9 @@
 /*  
 Theme Name: Open Learning Hub
 Theme URI: http://www.woothemes.com/
-Version: 1.4.8
-Description: Copied from Editorial because they make it so frigging hard to make into children. Designed by <a href="http://www.woothemes.com">WooThemes</a>.
-Author: mods by @cogdog fmor theme originally by WooThemes
+Version: 1000.4.8
+Description: Copied from Editorial because they make it so frigging hard to make into children. Originally by <a href="http://www.woothemes.com">WooThemes</a> but not currently in circulation.
+Author: mods by @cogdog and @rwoodwar from theme originally by WooThemes, now abandoned
 Author URI: http://www.woothemes.com
 Tags: woothemes
 
@@ -1019,7 +1019,21 @@ html  { overflow-x: hidden; }
 
 .ie7 .button, .ie7 .button:visited {  padding:7px 6px; margin:0; }
 
-/* Thought Vector Specials */
+/* Open Learning Hub Specials */
+
+#headlines .comments, #recent-news .comments, .post-more .comments, #slides .pagination, #slides .prev-text .title, #slides .next-text .title {display:none;}
+
+.gform_wrapper .top_label .gfield_label {width:100%;}
+
+#footer-widgets .widget { font: 14px Helvetica, Arial, sans-serif;}
+
+.slide-content .entry p {color: #fff;}
+
+#more-news .post .title, .entry, .entry p {word-wrap: break-word;}
+
+.widget_text .textwidget ol {list-style:decimal;}
+
+
 
 a[href$='.opml'], a.opml { 
 	padding: 5px 0 5px 20px;
