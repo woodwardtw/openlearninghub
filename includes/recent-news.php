@@ -40,7 +40,7 @@
 	}
 ?>
 
-<h2 class="section-title"><?php _e( 'Recent Vectors', 'woothemes' ); ?> <a class="subscribe" href="<?php echo $rss_url; ?>" title="<?php esc_attr_e( 'Subscribe to RSS', 'woothemes' ); ?>"><?php _e( 'Subscribe', 'woothemes' ); ?></a></h2>
+<h2 class="section-title"><?php _e( 'Recently Opened', 'woothemes' ); ?> <a class="subscribe" href="<?php echo $rss_url; ?>" title="<?php esc_attr_e( 'Subscribe to RSS', 'woothemes' ); ?>"><?php _e( 'Subscribe', 'woothemes' ); ?></a></h2>
 
 <div id="recent-news-filter">
 

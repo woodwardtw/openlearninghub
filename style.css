@@ -1040,7 +1040,11 @@ a[href$='.twitter'], a.twitter {
 @media only screen and (max-width: 767px) {
 #main.fullwidth, .layout-full #main, .col-full { width: 100%; margin:10px; }
 #navigation {width: 100%;}
-.archive-layout .post  { float: left; width: 90%; margin: 0 20px 40px 0; }
 
-#slides {width: 100%}
+.archive-layout .post  { float: left; width: 90%; margin: 0 20px 40px 0; }
+.entry, .entry p {width: 65%;}
+
+#slides {width: 100%;}
+
+#sidebar {width: 100%;}
 }
