@@ -35,7 +35,6 @@
 	    $header_align = $woo_options['woo_header_align'];
 	    $header_left_layout = $woo_options['woo_header_left_layout'];
 	?>
-           
 	<div id="header" class="col-full <?php if ($header_align == 'alignleft' ) {  echo "left"; } if($header_left_layout == "headlines") { echo " headlines-layout"; } ?>">
  		
  		<?php if((($header_align == 'alignleft') && ($header_left_layout == 'search-subscribe')) || ($header_align == 'aligncenter') ) { ?>
@@ -52,6 +51,7 @@
 			<a href="<?php echo home_url( '/' ); ?>" title="<?php bloginfo( 'description' ); ?>">
 				<img src="<?php if ($logo) echo $logo; else { echo get_template_directory_uri(); ?>/images/logo<?php if ( $woo_options['woo_header_align'] == 'alignleft' ) { ?>-left<?php } ?>.png<?php } ?>" alt="<?php bloginfo( 'name' ); ?>" />
 			</a>
+			     <span class="description"><?php echo $blog_title = get_bloginfo( 'description' ); ?> </span>     
         <?php } ?> 
         
         <?php if( is_singular() && ! is_front_page() ) { ?>
