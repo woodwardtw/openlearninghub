@@ -1,5 +1,23 @@
 *** WooThemes Framework Changelog ***
 
+2016.08.17 - version 6.2.8
+ * Fix - Fix for certain hosting providers compatibility. Archive pagination caused 502 errors.
+   admin-functions.php
+
+2016.06.30 - version 6.2.7
+ * Fix - wf_get_google_fonts_store() Fixes the syntax of the Google Fonts variants to ensure they load properly.
+   admin-functions.php
+ * Fix - moved PHP/JS files into separate JS files loaded for the shortcode generator dialogs.
+   admin-shortcode-generator.php,
+   js/shortcode-generator/js/dialog.js
+ * Deprecated - Old logic for shortcode generator dialogs.
+   js/shortcode-generator/dialog.php,
+   js/shortcode-generator/js/dialog-js.php
+
+2016.04.14 - version 6.2.6
+ * Fix - replaces use of deprecated function add_object_page() with add_menu_page() for WP 4.5+ compatibility.
+   classes/class-wf-settings.php
+
 2016.03.08 - version 6.2.5
  * Fix - Fixes post hook output on pages for Woo Hooks Manager in Canvas.
    admin-hooks.php

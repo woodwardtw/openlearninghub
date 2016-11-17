@@ -7,7 +7,7 @@ class Woo_Ad125Widget extends WP_Widget {
 
 	function Woo_Ad125Widget() {
 		$widget_ops = array('description' => 'Use this widget to add 125x125 Ads as a widget.' );
-		parent::WP_Widget(false, __('Woo - Ads 125x125', 'woothemes'),$widget_ops);      
+		parent::__construct(false, __('Woo - Ads 125x125', 'woothemes'),$widget_ops);      
 	}
 
 	function widget($args, $instance) {  

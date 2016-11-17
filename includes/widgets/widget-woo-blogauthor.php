@@ -6,7 +6,7 @@ class Woo_BlogAuthorInfo extends WP_Widget {
 
    function Woo_BlogAuthorInfo() {
 	   $widget_ops = array( 'description' => 'This is a WooThemes Blog Author Info widget.' );
-	   parent::WP_Widget(false, __( 'Woo - Blog Author Info', 'woothemes' ),$widget_ops);      
+	   parent::__construct(false, __( 'Woo - Blog Author Info', 'woothemes' ),$widget_ops);      
    }
 
    function widget($args, $instance) {  

@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return string
  */
 function wf_get_version () {
-    return '6.2.5';
+    return '6.2.8';
 } // End wf_get_version()
 
 function woo_version_init () {

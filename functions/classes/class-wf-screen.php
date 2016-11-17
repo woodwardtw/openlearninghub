@@ -13,7 +13,6 @@ class WF_Screen {
 		do_action( 'wf_screen_before', $token, $screen_icon );
 		do_action( 'wf_screen_before_' . esc_attr( $token ), $token, $screen_icon );
 		$html = '<div class="wf-wrap wrap">' . "\n";
-		$html .= get_screen_icon( $screen_icon );
 		$html .= '<h2 class="nav-tab-wrapper">' . "\n";
 		$html .= self::get_navigation_tabs();
 		$html .= self::get_admin_branding();

@@ -7,7 +7,7 @@ class Woo_Tabs extends WP_Widget {
 
    function Woo_Tabs() {
   	   $widget_ops = array( 'description' => 'This widget is the Tabs that classicaly goes into the sidebar. It contains the Popular posts, Latest Posts, Recent comments and a Tag cloud.' );
-       parent::WP_Widget(false, $name = __( 'Woo - Tabs', 'woothemes' ), $widget_ops);
+       parent::__construct(false, $name = __( 'Woo - Tabs', 'woothemes' ), $widget_ops);
    }
 
 

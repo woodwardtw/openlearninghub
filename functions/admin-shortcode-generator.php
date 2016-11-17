@@ -47,6 +47,15 @@ class WooThemes_Shortcode_Generator {
 			wp_register_script( 'woo-colourpicker', esc_url( $this->framework_url() . 'js/colorpicker.js' ), array( 'jquery' ), '3.6', true ); // Loaded into the footer.
 			wp_enqueue_script( 'woo-colourpicker' );
 
+			// Register the Shortcode Generator Dialog JS
+			$dialog_settings = array(
+	            'fonts' => $this->google_fonts_list(),
+	            'wfUrl' => get_template_directory_uri() . '/functions/'
+	        );
+	        wp_register_script( 'woo-dialog-js', esc_url( $this->framework_url() . 'js/shortcode-generator/js/dialog.js' ), array(), '6.2.7', true );
+	        wp_localize_script( 'woo-dialog-js', 'dialogSettings', $dialog_settings );
+	        wp_enqueue_script( 'woo-dialog-js' );
+
 			// Register the colourpicker CSS.
 			wp_register_style( 'woo-colourpicker', esc_url( $this->framework_url() . 'css/colorpicker.css' ) );
 			wp_enqueue_style( 'woo-colourpicker' );
@@ -59,6 +68,57 @@ class WooThemes_Shortcode_Generator {
 			wp_enqueue_style( 'woo-shortcode-generator' );
 		}
 	} // End init()
+
+	/**
+	 * Returns the list of google fonts for JS localization.
+	 * @access public
+	 * @since  6.2.7
+	 * @return $fonts string
+	 */
+	public function google_fonts_list() {
+		global $google_fonts;
+
+	    $fonts = '';
+
+	    // Build array of usabel typefaces.
+	    $fonts_whitelist = array(
+	                        'Arial, Helvetica, sans-serif',
+	                        'Verdana, Geneva, sans-serif',
+	                        '|Trebuchet MS|, Tahoma, sans-serif',
+	                        'Georgia, |Times New Roman|, serif',
+	                        'Tahoma, Geneva, Verdana, sans-serif',
+	                        'Palatino, |Palatino Linotype|, serif',
+	                        '|Helvetica Neue|, Helvetica, sans-serif',
+	                        'Calibri, Candara, Segoe, Optima, sans-serif',
+	                        '|Myriad Pro|, Myriad, sans-serif',
+	                        '|Lucida Grande|, |Lucida Sans Unicode|, |Lucida Sans|, sans-serif',
+	                        '|Arial Black|, sans-serif',
+	                        '|Gill Sans|, |Gill Sans MT|, Calibri, sans-serif',
+	                        'Geneva, Tahoma, Verdana, sans-serif',
+	                        'Impact, Charcoal, sans-serif'
+	                        );
+
+	    $fonts_whitelist = array(); // Temporarily remove the default fonts.
+
+	    // Get just the names of the Google fonts.
+	    $google_font_names = array();
+
+	    if ( count( $google_fonts ) ) {
+	        foreach ( $google_fonts as $g ) {
+	            $google_font_names[] = $g['name'];
+	        }
+
+	        $fonts_whitelist = array_merge( $fonts_whitelist, $google_font_names );
+	    }
+
+	    foreach ( $fonts_whitelist as $k => $v ) {
+	        $fonts_whitelist[$k] = str_replace( '|', '\"', $v );
+	    }
+
+	    $fonts = join( '|', $fonts_whitelist );
+
+	    return $fonts;
+	}
 
 	/**
 	 * Add a new button to tinyMCE.
@@ -213,7 +273,6 @@ class WooThemes_Shortcode_Generator {
 
 <?php  } ?>
 
-<script type="text/javascript" src="<?php echo esc_url( $woo_framework_url . 'js/shortcode-generator/js/dialog-js.php' ); ?>"></script>
 </div>
 <?php
 	} // End output_dialog_markup()

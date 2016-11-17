@@ -6,7 +6,7 @@ class Woo_Twitter extends WP_Widget {
 
    function Woo_Twitter() {
 	   $widget_ops = array( 'description' => 'Add your Twitter feed to your sidebar with this widget.' );
-       parent::WP_Widget(false, __( 'Woo - Twitter Stream', 'woothemes' ),$widget_ops);      
+       parent::__construct(false, __( 'Woo - Twitter Stream', 'woothemes' ),$widget_ops);      
    }
    
    function widget($args, $instance) {  

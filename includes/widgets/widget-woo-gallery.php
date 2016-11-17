@@ -41,7 +41,7 @@ class Woo_Widget_Gallery extends WP_Widget {
 		$control_ops = array( 'width' => 250, 'height' => 350, 'id_base' => 'woo_gallery' );
 
 		/* Create the widget. */
-		$this->WP_Widget( 'woo_gallery', __('Woo - Gallery', 'woothemes' ), $widget_ops, $control_ops );
+		$this->__construct( 'woo_gallery', __('Woo - Gallery', 'woothemes' ), $widget_ops, $control_ops );
 		
 		$this->defaults = array(
 						'title' => __( 'Gallery', 'woothemes' ), 

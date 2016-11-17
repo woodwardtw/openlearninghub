@@ -7,7 +7,7 @@ class Woo_flickr extends WP_Widget {
 	function Woo_flickr() {
 		$widget_ops = array( 'description' => 'This Flickr widget populates photos from a Flickr ID.' );
 
-		parent::WP_Widget(false, __( 'Woo - Flickr', 'woothemes' ),$widget_ops);      
+		parent::__construct(false, __( 'Woo - Flickr', 'woothemes' ),$widget_ops);      
 	}
 
 	function widget($args, $instance) {  

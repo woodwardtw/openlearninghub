@@ -88,7 +88,7 @@ class WF_Settings {
 		$theme_name = apply_filters( 'wf_branding_menu_label', $ct->__get( 'Name' ) );
 		$icon = apply_filters( 'wf_branding_icon', '' );
 
-		add_object_page ( __( 'Settings', 'woothemes' ), esc_html( $theme_name ), 'edit_theme_options', 'woothemes', array( $this, 'settings_screen' ), $icon );
+		add_menu_page( __( 'Settings', 'woothemes' ),  esc_html( $theme_name ), 'edit_theme_options', 'woothemes', array( $this, 'settings_screen' ), $icon, 50 );
 		$wf_settings_screen_hook = add_submenu_page( 'woothemes', esc_html( $theme_name ), __( 'Settings', 'woothemes' ), 'edit_theme_options', 'woothemes', array( $this, 'settings_screen' ) ); // Default
 
 		// Load validation and save logic for the settings screen.

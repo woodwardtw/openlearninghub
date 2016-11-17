@@ -8,7 +8,7 @@ class Woo_EmbedWidget extends WP_Widget {
 
 	function Woo_EmbedWidget() {
 		$widget_ops = array( 'description' => 'Display the Embed code from posts in tab like fashion.' );
-		parent::WP_Widget(false, __( 'Woo - Embed/Video', 'woothemes' ),$widget_ops);      
+		parent::__construct(false, __( 'Woo - Embed/Video', 'woothemes' ),$widget_ops);      
 	}
 
 	function widget($args, $instance) { 
