@@ -6,7 +6,7 @@ Template Name: Random Syndicated Content Redirect
 
 
 // check for the passed parameter value, set to blank if not fo
-$group =  (isset($wp_query->query_vars['group'])) ? $wp_query->query_vars['group'] : '23';
+$group =  (isset($wp_query->query_vars['group'])) ? $wp_query->query_vars['group'] : DEFCATID;
 
 // date stamp for 2 weeks ago
 //$recent_str = date('%a, %e %b %Y %H:%i:%s', strtotime("-2 weeks"));

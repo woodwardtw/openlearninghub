@@ -26,9 +26,12 @@ require_once ($includes_path . 'theme-widgets.php' );		// Theme widgets
 require_once ($includes_path . 'woo-column-generator/woo-column-generator.php' ); // Button to generate content columns
 
 /*-----------------------------------------------------------------------------------*/
-/* You can add custom functions below */
+/* You can add custom functions below THANKS DUDE! */ 
 /*-----------------------------------------------------------------------------------*/
 
+/* -----set syndicated blog category ID 
+		hopefully you made one named "All Blogs"										*/  
+define( DEFCATID, get_cat_ID('All Blogs'));
 
 /* ----  mobile menu script  ------ */
 /* ----- enque scripts for Google+ */
@@ -36,15 +39,10 @@ require_once ($includes_path . 'woo-column-generator/woo-column-generator.php' )
 function add_theme_scripts() {
   
   wp_enqueue_script( 'mobile_menu', get_template_directory_uri() . '/functions/js/responsive-menu.js', array ( 'jquery' ), 1.1, true);
-  wp_enqueue_script( 'tv_google_plus', 'https://apis.google.com/js/plusone.js' );
+  wp_enqueue_script( 'openlearnhub_google_plus', 'https://apis.google.com/js/plusone.js' );
 
 }
 add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
-
-
-
-
-
 
 
 /* ----- return a specific character count for any content (e.g. excerpts based on chars) */
@@ -59,9 +57,9 @@ function get_character_excerpt( $content, $chars=500 ) {
 
 
 /* ----- add custom user profile fields */
-add_filter('user_contactmethods', 'tv_modify_profile');
+add_filter('user_contactmethods', 'openlearnhub_modify_profile');
 
-function tv_modify_profile( $profile_fields ) {
+function openlearnhub_modify_profile( $profile_fields ) {
 
 	// Add new fields
 	$profile_fields['blog'] = 'Thought Vectors Blog';
@@ -77,9 +75,9 @@ function tv_modify_profile( $profile_fields ) {
 /* ----- add allowable url parameter for urls */
 
 
-add_filter('query_vars', 'tv_parameter_queryvars' );
+add_filter('query_vars', 'openlearnhub_parameter_queryvars' );
 
-function tv_parameter_queryvars( $qvars )
+function openlearnhub_parameter_queryvars( $qvars )
 
 // allow  tag parameter to be passed in query string
 {
@@ -137,7 +135,7 @@ function get_feed_count() {
 		FROM        $wpdb->links wpl,  $wpdb->postmeta wpm
 		WHERE       wpm.meta_key='syndication_feed_id' AND 
 					wpm.meta_value = wpl.link_id AND
-					wpl.link_notes LIKE '%%{category#23}%%'
+					wpl.link_notes LIKE '%%{category#" . DEFCATID . "}%%'
 		";
 		
 	// run run run that query
@@ -146,9 +144,9 @@ function get_feed_count() {
 	return (count ($feedblogs ) );
 }
 
-add_shortcode("feedroll", "tv_feedroll");  
+add_shortcode("feedroll", "openlearnhub_feedroll");  
 
-function tv_feedroll( $atts ) {  
+function openlearnhub_feedroll( $atts ) {  
 	global $wpdb;
 	global $cat; // so we can get the current category
 	
@@ -159,7 +157,7 @@ function tv_feedroll( $atts ) {
 	//		pass a value of "random" to list a subset chosen randomly; "all" to list all on a PAGE_LAYOUT_ONE_COLUMN
 	// $limit = how many to list on a random subset
 	
- 	extract( shortcode_atts( array( "category" => "23", "limit" => "10", "show" => "sidebar" ), $atts));  
+ 	extract( shortcode_atts( array( "category" => DEFCATID, "limit" => "10", "show" => "sidebar" ), $atts));  
  	
  	if ( is_category() ) {
  		// set to correct id if we are on a category archive (e.g. general category widget)
@@ -172,7 +170,7 @@ function tv_feedroll( $atts ) {
  	
  	// A bit of gymnastics- for a sidebar where we do not want them all (default category)
  	// override for the random subset
- 	if ( $catid == 23 and $show!= "all" ) $show = "random";
+ 	if ( $catid == DEFCATID and $show!= "all" ) $show = "random";
 
  	// keep a reference for the current category for an archive page
  	$mycat = get_category($catid);
@@ -185,7 +183,7 @@ function tv_feedroll( $atts ) {
  		
  		// uh oh,  hard wired link to see the full list. Make the link to a page that 
  		// uses the shortcode to list all (or empty this string out)
- 		$footer = '<br /><br/><a href="/all-blogs/">See All Thought Vector Blogs...</a></p>';
+ 		$footer = '<br /><br/><a href="/all-blogs/">See All Blogs...</a></p>';
  		
  	} else {
  	
@@ -210,13 +208,15 @@ function tv_feedroll( $atts ) {
 		ORDER BY    $orderby
 		$limit
 		";
+	
+	
 		
  	// run run run that query
 	$feedblogs = $wpdb->get_results( $custom_query );	
 	
 	// bail if we got nothing
 	if (count($feedblogs) == 0 ) {
-		$content =  "No blogs found for '"  . $mycat->name . "'";
+		$content =  "No blogs found for '"  . $mycat->name . "'" . '<br />' . $custom_query;
 		
 	// we got feeds!
 	} else {
@@ -225,7 +225,7 @@ function tv_feedroll( $atts ) {
 			// for a random subset we want to reference a count of all blogs on the site; 
 			// in this site we have 2 feeds that are not blogs, so pass that as a parameter
 			// (more hard coding specific to this site, sigh)
-			$suffix = ' from <strong>' .  get_feed_count()  . '</strong> total blogs syndicated into this site. Ten random ones are listed below: ';
+			$suffix = ' from <strong>' .  get_feed_count()  . '</strong> total blogs syndicated into this site. A few random ones are listed below: ';
 		} else {
 		
 			// let's be grammatically correct for only one blog
@@ -236,10 +236,10 @@ function tv_feedroll( $atts ) {
 		}
 	
 		// Yikes, we use the "Count Posts in a Category, Tag, or Custom Taxonomy" plugin to get a total post count
-		$content = '<p>Thought Vectors includes <strong>' .  do_shortcode('[cat_count slug ="'. $mycat->slug . '"]') . '</strong> total post(s) syndicated for <strong>' . $mycat->name . '</strong>' .  $suffix . '</p>';
+		$content = '<p>This site includes <strong>' .  do_shortcode('[cat_count slug ="'. $mycat->slug . '"]') . '</strong> total post(s) syndicated for <strong>' . $mycat->name . '</strong>' .  $suffix . '</p>';
 		
 		//start the output
-		$content .= "<ol>\n";
+		$content .= "<ol style=\"padding:1.5em;\">\n";
 		
 		if ($show == 'all') {
 			// output each item as a list item, title of blog linked to URL, and a description
@@ -256,7 +256,7 @@ function tv_feedroll( $atts ) {
 		}
 		
 		// clean up after your lists
-		$content .= '</ol>' . $footer .  '<hr /><p>Give some comment love to <a href="' . get_site_url() . '/random/?group=' . $catid . '">a random post in the last 2 weeks from ' . $mycat->name . '</a></p>'; 
+		$content .= '</ol>' . $footer .  '<hr /><p>Give some comment love to <a href="' . get_site_url() . '/random/?group=' . $catid . '" target="_blank">a random post from "' . $mycat->name . '"</a></p>'; 
 		
 		
 	}		
