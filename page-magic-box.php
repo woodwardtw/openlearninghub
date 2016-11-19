@@ -7,7 +7,7 @@ Provides functionality for the RSS Feed Finder
 
  
 // no feedback for now.
-$feedback_msg = 'The Magic Box is a tool that can find the RSS feed for your blog. It works best if all content on your blog should be syndicated to this site (it will not work for site where you are syndicating by tag or category).';
+$feedback_msg = '';
 
 // verify that a form was submitted and it passes the nonce check
 if ( isset( $_POST['magic_box_form_add_feedfinder_submitted'] ) && wp_verify_nonce( $_POST['magic_box_form_add_feedfinder_submitted'], 'magic_box_form_add_feedfinder' ) ) {
