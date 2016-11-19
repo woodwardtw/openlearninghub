@@ -55,23 +55,6 @@ function get_character_excerpt( $content, $chars=500 ) {
 	}
 }
 
-
-/* ----- add custom user profile fields */
-add_filter('user_contactmethods', 'openlearnhub_modify_profile');
-
-function openlearnhub_modify_profile( $profile_fields ) {
-
-	// Add new fields
-	$profile_fields['blog'] = 'Thought Vectors Blog';
-	$profile_fields['blogfeed'] = 'Thought Vectors Blog Feed';
-	$profile_fields['geolocation'] = 'Geographical Location';
-	$profile_fields['twitter'] = 'Twitter User Name';
-	$profile_fields['org'] = 'Organizational Affiliation';
-	
-	return $profile_fields;
-}
-
-
 /* ----- add allowable url parameter for urls */
 
 
@@ -280,119 +263,137 @@ function add_blog_to_fwp( $entry, $form ) {
 	
 	global $wpdb; // cause we need to go to the database directly
 	
+	// skip this function if they opted for help; in this case just
+	// send the info via email
+	
+	if ( $entry[16] == 'help')  {
+	
+		// Get the link category we will use for pending feeds
+		// NOTE: There needs to be at least one link in there to find the category
+
+		$fwp_link_category = get_terms( 'link_category', array(
+			'name__like'    => 'Pending',
+		 ) );
+	
+	} else {
+		// Get the link category Feed Wordpress uses to store feed data
+	
+		$fwp_link_category = get_terms( 'link_category', array(
+			'name__like'    => 'Contributors',
+		 ) );
+	}
+	
+	// make that an integer, pal
+	$contrib_category = intval($fwp_link_category[0]->term_id);
+
 	// set filters aside for input
 	remove_filter('pre_link_rss', 'wp_filter_kses');
 	remove_filter('pre_link_url', 'wp_filter_kses');
-	
-	// Get the link category Feed Wordpress uses to store feed data
-	$fwp_link_category = get_terms('link_category', 'name__like=Contributors');
-	
-	// get the correct term id for the link category
-	$contrib_category = intval($fwp_link_category[0]->term_id);
-	
-	// we will use twitter handle as a user name
-	$twittername = trim( $entry[4] ); 
-	
+
+	// we will use twitter handle as a user name, clean it up.
+	$twittername = trim( $entry[2] ); 
+
 	// just in case they put an @ in front, take it out
 	if ( $twittername[0] == '@' ) $twittername = substr($twittername, 1);
 		
-	// set up array to create a new WP account; password is randomized- user never needs
-	// to log in, shhhhhhh it's a secret
-	$userdata = array(
-		'user_login'    => $twittername,
-		'user_pass'		=> wp_generate_password( $length=12, $include_standard_special_chars=false ),
-		'user_email'	=> $entry[2],
-		'display_name'	=> '@' . $twittername,
-		'first_name' 	=> $entry['1.3'],
-		'last_name' 	=> $entry['1.6'],
-		
-	);
+	// check if email address is already in use, if it does, we get a user id back
+	$user_id = email_exists($entry[3]);
+
+	// or check is username exists
+	if ( !$user_id ) $user_id = username_exists( $twittername );
+
+	// create account if it does not exist
+	if ( !$user_id ) {
+		// set up array to create a new WP account; password is randomized- user never needs
+		// to log in, shhhhhhh it's a secret
+		$userdata = array(
+			'user_login'    => $twittername,
+			'user_pass'		=> wp_generate_password( $length=12, $include_standard_special_chars=false ),
+			'user_email'	=> $entry[3],
+			'display_name'	=> '@' . $twittername,
+			'first_name' 	=> $entry['1.3'],
+			'last_name' 	=> $entry['1.6']
+		);
+
+		$user_id = wp_insert_user( $userdata );
 	
-	// create account
-	$user_id = wp_insert_user( $userdata );
-	
-	// error check and bomb out, should only be feeif username exists
+	}
+
+	// error check and bomb out, should only be if username exists
 	if ( !is_wp_error( $user_id ) ) {
-	
-		// Safari browsers convert RSS feeds to feed://, so replace it if its in the string
-		$feedurl = str_replace("feed://", "http://", trim( $entry[5] ));
 		
-		// update our custom meta data fields, these are ones created specifically
-		// for this site, your mileage and use should vary
-		update_user_meta( $user_id, 'blog', trim( $entry[3] ) );
-		update_user_meta( $user_id, 'blogfeed', $feedurl );
-		update_user_meta( $user_id, 'geolocation', trim( $entry[6] ) );
-		update_user_meta( $user_id, 'twitter', trim( $twittername ) );
-	
+		if ( $entry[16] == 'yes' ) {
+			// going for the whole blog option
+			$blogurl = trim( $entry[17] );
+
+			// RSS Feed
+			$feedurl = trim( $entry[18] );
+			
+		} elseif ( $entry[16] == 'no' ) {
+			// going for the category / tag option
+			$blogurl = trim( $entry[19] );
+
+			// RSS Feed
+			$feedurl = trim( $entry[20] );
+		} else {
+			// the TBA option, edit later in links table
+			$blogurl = trim( $entry[27] );
+
+			// RSS Feed
+			$feedurl = trim( $entry[27] );
+
+		
+		}
+		
+				
 		// start with an array to hold categories for the Links note field
 		// in the fun quirky format FWP uses
-		$catids[] = "{category#23}"; // add Blog category to all feeds
-	
-		// Walk through the affiliations
-		if  ( $entry[7] == 'open' ) {
-		
-			// open participants?
-			$catids[] = "{category#24}"; // add category for Open Participants
-			update_usermeta( $user_id, 'org', trim($entry[8]) );
-	
-		} else {
-			// VCU Participants
-			$catids[] = "{category#70}"; // category for VCU Participants
-			update_usermeta( $user_id, 'org', 'VCU' );
-		
-			if  ( $entry[7] == 'vcu' ) {
-				$catids[] = "{category#33}"; // category for VCU Faculty, staff
-			
-			} else {
-					$catids[] = "{category#26}"; // category for UNIV Student
-					
-					// for UNIV students, we add a category, the code is in the Gravity
-					// form because I was lazy on writing a swtich STATEMENT_TRACE
-					$catids[] = $entry[10];
-			} // end if for VCU participants
-		} // end if for VCU
-				
-	
+		$catids[] = '{category#' . DEFCATID . '}'; // add Syndicated category to all feeds
+
+		// Add Category for affiliation (category id from gform)		
+		$catids[] = "{category#" . $entry[23] . "}";				
+
 		//build the link notes with the user name created for this blog
 		$link_notes = 'map authors: name\n*\n'. $user_id . "\n";
-	
-		// add a tag to all syndicated blogs
-		$link_notes .= 'tags: blogged' . "\n";
-	
+
 		// add categories to the link notes
 		$link_notes .=  'cats: ' . implode( '\n' , $catids) . "\n";
-		
-		// flag to add tags and categories
-		$link_notes .= 	'add/post_tag: yes' . "\n" . 'add/category: yes' . "\n";
 	
+		// flag to add tags and categories
+		$link_notes .= 	'add/category: yes' . "\n";
+
+		// link data, we can use url for name, FWP will update it once syndication happens
 		$new_link = array(
-				'link_name' => trim($entry[3]),
-				'link_url' => trim($entry[3]),
-				'link_category' => $contrib_cat,
-				'link_rss' => trim($entry[5])
+				'link_name' => $blogurl,
+				'link_url' => $blogurl,
+				'link_category' => $contrib_category,
+				'link_rss' => $feedurl
 				);
 		if( !function_exists( 'wp_insert_link' ) )
 			include_once( ABSPATH . '/wp-admin/includes/bookmark.php' );	
 
 		// add the new link
 		$linkid = wp_insert_link($new_link);
-	
+
 		// clean the link notes
 		$esc_link_notes = $wpdb->escape($link_notes);
-	
+
 		// update the notes in the links
 		$result = $wpdb->query("
 				UPDATE $wpdb->links
 				SET link_notes = \"" . $esc_link_notes . "\" 
 				WHERE link_id='$linkid'
 		");
-	} else {
 	
-		// a most useless error message for user creation
-	   	$error_string = $user_id->get_error_message();
-   		die ('ERROR CONDITION RED: ' .  $error_string);
+	} else {
+
+		// a most useless error message for user creation probs, danger danger
+		$error_string = $user_id->get_error_message();
+		die ('ERROR CONDITION RED: ' .  $error_string);
 	}
+
 }
+
 
 /*-----------------------------------------------------------------------------------*/
 /* Don't add any code below here or the sky will fall down */
