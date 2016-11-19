@@ -1059,11 +1059,17 @@ a[href$='.twitter'], a.twitter {
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 680px) {
-	#main.fullwidth, .layout-full #main, .col-full { width: 100%; margin:10px; }
+	#main.fullwidth, .layout-full #main, .col-full { width: 100%; margin:10px; padding: 15px; }
 	#navigation {width: 100%;}
 	#main {width: 100%;}
 	.archive-layout .post {
 		width: 100%;
 		font-size: 3em;
+	}
+	.archive-layout .post .title { font-size: 1.5em; }
+	#sidebar {width: 100%;}
+	#more-news {width: 100%;}
+	#more-news .post {
+		width: 47%;
 	}
 }
