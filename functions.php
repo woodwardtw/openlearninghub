@@ -394,18 +394,6 @@ function add_blog_to_fwp( $entry, $form ) {
 
 }
 
-//GRAVITY FORMS CLEANER
-add_filter( 'gform_save_field_value_1_2', 'twitterCleaner', 10, 5 );
-
-function twitterCleaner() {
- $value = rgpost( "input_2" );
-  $len = strlen ($value);
-    	var_dump(substr($value,1));
-  if ( substr($value,0,1) ==='@') {
-  	  $value = substr($value, 1, ($len-1));
-  } 
-  return $value;
-}
 
 
 /*-----------------------------------------------------------------------------------*/
