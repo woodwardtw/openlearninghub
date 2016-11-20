@@ -1072,4 +1072,8 @@ a[href$='.twitter'], a.twitter {
 	#more-news .post {
 		width: 47%;
 	}
+	.entry img, img.thumbnail {
+		width: 50%;
+		height: 50%;
+	}
 }

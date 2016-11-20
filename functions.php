@@ -38,7 +38,7 @@ define( DEFCATID, get_cat_ID('All Blogs'));
 
 function add_theme_scripts() {
   
-  wp_enqueue_script( 'mobile_menu', get_template_directory_uri() . '/functions/js/responsive-menu.js', array ( 'jquery' ), 1.1, true);
+  wp_enqueue_script( 'toms-extras', get_template_directory_uri() . '/functions/js/toms-extras.js', array ( 'jquery' ), 1.1, true);
   wp_enqueue_script( 'openlearnhub_google_plus', 'https://apis.google.com/js/plusone.js' );
 
 }
@@ -392,6 +392,19 @@ function add_blog_to_fwp( $entry, $form ) {
 		die ('ERROR CONDITION RED: ' .  $error_string);
 	}
 
+}
+
+//GRAVITY FORMS CLEANER
+add_filter( 'gform_save_field_value', 'twitterCleaner' );
+
+function twitterCleaner() {
+ $value = rgpost( "input_2" );
+  $len = strlen ($value);
+    	var_dump(substr($value,1));
+  if ( substr($value,0,1) ==='@') {
+  	  $value = substr($value, 1, ($len-1));
+  } 
+  return $value;
 }
 
 
