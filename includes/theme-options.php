@@ -1,4 +1,4 @@
-he<?php
+<?php
 
 if (!function_exists( 'woo_options')) {
 function woo_options() {
@@ -327,7 +327,7 @@ $options[] = array( "name" => "Left aligned header options",
 $options[] = array( "name" => "Left aligned header - Headlines Category",
 					"desc" => "Specify the category slug you would like to use for Headline posts",
 					"id" => $shortname."_header_left_headlines_tag",
-					"std" => "featured",
+					"std" => "",
 					"class" => "hidden", 
 					"type" => "text" );
 					
@@ -440,8 +440,8 @@ $options[] = array( "name" => "Enable Slider",
                     "std" => "false",
                     "type" => "checkbox");
                                             
-$options[] = array( "name" => "Slider Tag",
-                    "desc" => "Add a comma-separated list of the tags that you would like to have displayed in the slider section on your homepage. For example, if you add 'tag1, tag3' here, then all posts tagged with either 'tag1' or 'tag3' will be shown in the slider.",
+$options[] = array( "name" => "Slider Category",
+                    "desc" => "Enter the slug name of the category you would like to use to feature content on the front slider",
                     "id" => $shortname."_slider_tags",
                     "std" => "",
                     "type" => "text");

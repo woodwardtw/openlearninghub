@@ -6,17 +6,22 @@
 <div id="slides">
     <?php $woo_slider_tags = $woo_options['woo_slider_tags']; if ( ($woo_slider_tags != '') && (isset($woo_slider_tags)) ) { ?>
     <?php 
-    	unset($tag_array); 
+    	/*  unset($tag_array); 
 		$slide_tags_array = explode(',',$woo_options['woo_slider_tags']); // Tags to be shown
+        
         foreach ($slide_tags_array as $tags){ 
 			$tag = get_term_by( 'name', trim($tags), 'post_tag', 'ARRAY_A' );
 			if ( $tag['term_id'] > 0 )
 				$tag_array[] = $tag['term_id'];
 		}
-		if ( ! empty( $tag_array ) ) {
+		
+		*/
+		
+		
+		// if ( ! empty( $tag_array ) ) {
     ?>
 	
-	<?php $saved = $wp_query; query_posts( array( 'tag__in' => $tag_array, 'showposts' => $woo_options['woo_slider_entries'], 'post_type' => 'post' ) ); ?>
+	<?php $saved = $wp_query; query_posts( array( 'category_name' => $woo_slider_tags, 'showposts' => $woo_options['woo_slider_entries'], 'post_type' => 'post' ) ); ?>
 	<?php if ( have_posts() ) { $count = 0; ?>
     <div class="slides_container">
         
@@ -83,9 +88,9 @@
     
     <?php } $wp_query = $saved; ?> 
 
-	<?php } else { ?>
-	<?php echo do_shortcode( '[box type="info"]No posts with your specified tag(s) were found[/box]' ); ?>
-	<?php } // End IF Statement ?>  
+	<?php  // } else { ?>
+	<?php // echo do_shortcode( '[box type="info"]No posts with your specified tag(s) were found[/box]' ); ?>
+	<?php // } // End IF Statement ?>  
     <?php } else { ?>
 	<?php echo do_shortcode( '[box type="info"]Please setup tag(s) in your options panel that are used in posts.[/box]' ); ?>
      <?php } ?>   
