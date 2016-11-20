@@ -395,7 +395,7 @@ function add_blog_to_fwp( $entry, $form ) {
 }
 
 //GRAVITY FORMS CLEANER
-add_filter( 'gform_save_field_value', 'twitterCleaner' );
+add_filter( 'gform_save_field_value_1_2', 'twitterCleaner', 10, 5 );
 
 function twitterCleaner() {
  $value = rgpost( "input_2" );
