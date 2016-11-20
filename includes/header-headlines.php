@@ -16,8 +16,9 @@
 		
 		$query_args['numberposts'] = $settings['number'];
 		
+		// We are doing a trick and using the tag option to be the slug name of a category
 		if ( $settings['tag'] != '' ) {
-			$query_args['tag'] = $settings['tag'];
+			$query_args['category_name'] = $settings['tag'];
 		}
 		
 		$headlines = get_posts( $query_args );

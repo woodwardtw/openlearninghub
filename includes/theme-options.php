@@ -1,4 +1,4 @@
-<?php
+he<?php
 
 if (!function_exists( 'woo_options')) {
 function woo_options() {
@@ -324,10 +324,10 @@ $options[] = array( "name" => "Left aligned header options",
 					"class" => "hidden", 
 					"options" => array( "headlines" => "Display Headline Entries","search-subscribe" => "Display Search & Subscribe"));
 					
-$options[] = array( "name" => "Left aligned header - Headlines tag",
-					"desc" => "Specify the tag you would like to use for Headline posts",
+$options[] = array( "name" => "Left aligned header - Headlines Category",
+					"desc" => "Specify the category slug you would like to use for Headline posts",
 					"id" => $shortname."_header_left_headlines_tag",
-					"std" => "",
+					"std" => "featured",
 					"class" => "hidden", 
 					"type" => "text" );
 					
