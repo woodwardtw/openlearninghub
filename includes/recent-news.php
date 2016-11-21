@@ -159,13 +159,13 @@
 	        	
 	        	// set link for read more text to blog source if syndicated
 	        	if ( is_syndicated() ) {
-	        		echo '<span class="fwp-source">via: <em><a href="' . get_post_meta($post->ID, 'syndication_source_uri', $single = true)  . '">' . get_post_meta($post->ID, 'syndication_source', $single = true) . '</a></em></span>'; 
+	        		echo '<span class="fwp-source">via: <em><a href="' . get_post_meta($post->ID, 'syndication_source_uri', $single = true)  . '">' . get_post_meta($post->ID, 'syndication_source', $single = true) . '</a></em><br />See <a href="/author/' . $author_twname . '">all posts by ' . $author_twname .  '</a></span>'; 
 	        	
 	        	}
 			?>
 
 	        	
-	        	<span class="read-more"><a href="<?php the_permalink(); ?>" title="<?php esc_attr_e( 'Read More', 'woothemes' ); ?>"><?php _e( 'Read More', 'woothemes' ); ?></a>  <?php edit_post_link(esc_html__('Edit', 'woothemes'));?></span>
+	        	<span class="read-more"><a href="<?php the_permalink(); ?>" title="<?php esc_attr_e( 'More...', 'woothemes' ); ?>"><?php _e( 'More...', 'woothemes' ); ?></a>  <?php edit_post_link(esc_html__('Edit', 'woothemes'));?></span>
 	        	
 	            <div class="fix"></div>
 	            <?php } ?>

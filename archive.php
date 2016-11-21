@@ -44,7 +44,8 @@
             <span class="archive_header"><?php _e( 'Archive', 'woothemes' ); ?> | <?php the_time( 'Y' ); ?></span>
 
             <?php } elseif ( is_author() ) { ?>
-            <span class="archive_header"><?php _e( 'Archive by Author', 'woothemes' ); ?></span>
+            <?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));?>
+            <span class="archive_header"><?php _e( 'All Posts by ' . $curauth->display_name, 'woothemes' ); ?></span>
 
             <?php } elseif ( is_tag() ) { ?>
             <span class="archive_header"><?php _e( 'All Posts Tagged', 'woothemes' ); ?> "<?php echo single_tag_title( '', true ); ?>"</span>
@@ -65,16 +66,7 @@
             <div <?php post_class( $class ); ?>>
 				
         	    <?php woo_post_meta(); ?>
-        	    
-        	    <?php if ( is_category( 'twitter' ) or in_category( 'twitter' )  ) : ?>
-        	    
-        	    <h2 class="title"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">#thoughtvectors tweet</a></h2>
-				<?php echo wp_oembed_get( get_permalink() ); ?>
-				
-				<span class="read-more"><?php edit_post_link(esc_html__('Edit', 'woothemes'));?></span>
-	
-				<?php else: ?>
-        	    
+        	           	    
         	    <?php $author_twname = get_the_author_meta( 'user_login' ); ?>
         	    
         	    <h2 class="title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
@@ -104,8 +96,7 @@
         	        <?php } ?>
         	        
         	    </div>
-        	     
-        	    <?php endif ?>                    
+        	                      
         	</div><!-- /.post -->
         	
         	<?php
