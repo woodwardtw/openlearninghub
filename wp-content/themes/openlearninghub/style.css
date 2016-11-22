@@ -1055,6 +1055,10 @@ a[href$='.twitter'], a.twitter {
 @media (min-width: 701px), (max-width: 8300px) {
 	#main{width:610px;}
 	#main.fullwidth, .layout-full #main, .col-full {width: 940px; margin:0 auto;}
+
+	.entry, .entry p {
+		font-size: 1.2em;
+	}
 	
 }
 
