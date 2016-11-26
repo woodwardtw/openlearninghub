@@ -1086,11 +1086,14 @@ a.button {
 }
 
 div[class*="subcontent-"] { 
-  display:none;
+  visibility: hidden;
+  height: 0px;
 }
 
 div.active { 
   display:block;
+  height: 800px;
+  visibility: visible;
 }
 
 
