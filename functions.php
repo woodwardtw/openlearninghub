@@ -394,7 +394,20 @@ function add_blog_to_fwp( $entry, $form ) {
 
 }
 
-
+if(!function_exists('load_my_script')){
+    function load_my_script() {
+        global $post;
+        $deps = array('jquery');
+        $version= '1.0'; 
+        $in_footer = true;
+        wp_enqueue_script('my-script', get_stylesheet_directory_uri() . 'functions/js/toms-extras.js', $deps, $version, $in_footer);
+        wp_localize_script('my-script', 'my_script_vars', array(
+                'postID' => $post->ID
+            )
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'load_my_script');
 
 /*-----------------------------------------------------------------------------------*/
 /* Don't add any code below here or the sky will fall down */

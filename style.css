@@ -514,7 +514,6 @@ body.page #main .page  { margin-top: -30px; }
 
 /* 3.4 Typographic Elements */
  #post-gallery  { clear: both; }
-.entry, .entry p  {  }
 .entry .dropcap  { font-weight: bold; font-size: 3em; float: left; margin: 11px 5px 0 0; }
 .entry h1, .entry h2, .entry h3, .entry h4, .entry h5, .entry h6 { margin:0 0 0.5em; line-height:1.5em; }
 .entry p  { margin-bottom: 1.2em; }
@@ -1051,6 +1050,49 @@ a[href$='.twitter'], a.twitter {
 	padding: 5px 20px 5px 0;
 	background: transparent url(images/ico-social-twitter.png) no-repeat center right;
 }
+
+/* --------------------- Twitter Tags Page */
+
+#twitter-menu-bar {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+a.button {
+  background-color:#424242;
+  color:#fff;
+  line-height:50px;
+  text-align:center;
+  text-decoration: none;
+}
+
+
+.twit-button {
+	display: inline-block;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 200px;
+	text-align: center;
+	margin-right: 12% !important;
+	margin-left: 12% !important;
+}
+
+.subcontent {
+  margin-top:30px;
+}
+
+div[class*="subcontent-"] { 
+  display:none;
+}
+
+div.active { 
+  display:block;
+}
+
 
 @media (min-width: 701px), (max-width: 8300px) {
 	#main{width:610px;}
