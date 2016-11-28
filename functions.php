@@ -30,8 +30,8 @@ require_once ($includes_path . 'woo-column-generator/woo-column-generator.php' )
 /*-----------------------------------------------------------------------------------*/
 
 /* -----set syndicated blog category ID 
-		hopefully you made one named "All Blogs"										*/  
-define( DEFCATID, get_cat_ID('All Blogs'));
+		hopefully you made one named "Syndicated"										*/  
+define( DEFCATID, get_cat_ID('Syndicated'));
 
 /* ----  mobile menu script  ------ */
 /* ----- enque scripts for Google+ */
@@ -133,113 +133,137 @@ function openlearnhub_feedroll( $atts ) {
 	global $wpdb;
 	global $cat; // so we can get the current category
 	
-	// Get the value of any passed attributes to our function
-	// $category is either passed or assumed from being on an archive page 
-	//		default is the parent category for all feeds
-	// $show defaults to listing all feeds for display in a sidebar; if the list is long
-	//		pass a value of "random" to list a subset chosen randomly; "all" to list all on a PAGE_LAYOUT_ONE_COLUMN
-	// $limit = how many to list on a random subset
-	
- 	extract( shortcode_atts( array( "category" => DEFCATID, "limit" => "10", "show" => "sidebar" ), $atts));  
+	/*  $category => either passed or assumed from being on an archive page 
+			default is the parent category for all feeds
+	    $orderby => 'random' for a selection of blogs in category, 'name' to list in 
+	    	by blog name, or 'newest' for order by most recent
+		$count = number of blogs to show, use 'all' for... you guessed it
+		$authorlink = true to append a link to author archive
+		$blogslug = link for page with all blogs listed
+	*/
+ 	
+ 	extract( shortcode_atts( array( "category" => DEFCATID, "orderby" => "random", "count" => 10, "authorlink" => "no", "blogslug" => 'all-blogs'), $atts ) );  
+
  	
  	if ( is_category() ) {
- 		// set to correct id if we are on a category archive (e.g. general category widget)
+ 		// set to correct id if we are a widget on a category archive (e.g. general category widget)
  		
  		$catid = $cat;
  	} else {
 		// get category ID if not passed as a value (we can haz string names for a param)
 		$catid = ( is_numeric ( $category ) ) ? $category : get_cat_ID( $category );
  	}	
- 	
- 	// A bit of gymnastics- for a sidebar where we do not want them all (default category)
- 	// override for the random subset
- 	if ( $catid == DEFCATID and $show!= "all" ) $show = "random";
 
- 	// keep a reference for the current category for an archive page
+ 	// keep a reference for the current category so we can fetch stuff about it (name,etc)
  	$mycat = get_category($catid);
- 
+
+ 	// if the sort order is newest, reverse sort by link ID
  	
- 	if ($show == "random") {
- 		// setup for displaying a random subset of feeds
- 		$orderby = 'RAND()'; // mySQL order to pick random feeds
- 		$limit = "LIMIT 0, $limit"; // limit to set amount
+ 	if ( $orderby == "newest" ) {
+ 		// list in reverse order of ID (newest added first)
+ 		$order_sql = "wpl.link_id  DESC";
  		
- 		// uh oh,  hard wired link to see the full list. Make the link to a page that 
- 		// uses the shortcode to list all (or empty this string out)
- 		$footer = '<br /><br/><a href="/all-blogs/">See All Blogs...</a></p>';
+ 	} elseif ( $orderby == "random" ) {
+ 		// random order, usually used for widgets
+ 		$order_sql = "RAND()";
  		
  	} else {
- 	
- 		// normal mode to list all blogs in a category
- 		$orderby = 'wpl.link_name ASC';
- 		$limit = '';
- 		$footer = '';
- 		$suffix = ' from the following blogs:';
-	} 
-	
+ 		// default, alpha order of title
+ 		$order_sql = "wpl.link_name ASC";
+ 	}
+
+ 	// for limited number of responses
+ 	$limit_sql = ( $count != 'all' ) ? "LIMIT 0, $count" : '';
+ 	 		
  	// custom mySQL query to get subscribed blogs from the links table
  	// because FeedWordpress stores stuff in the link notes
  	// the linked WHERE condition makes sure there is at least one syndicated post
  	// from a given feed 
  	$custom_query = "
 		SELECT DISTINCT      
-					wpl.link_name, wpl.link_url, wpl.link_description
+					wpl.link_name, wpl.link_url, wpl.link_notes
 		FROM        $wpdb->links wpl,  $wpdb->postmeta wpm
 		WHERE       wpm.meta_key='syndication_feed_id' AND 
 					wpm.meta_value = wpl.link_id AND 
 					wpl.link_notes LIKE '%%{category#" . $catid . "}%%'
-		ORDER BY    $orderby
-		$limit
+		ORDER BY    $order_sql $limit_sql
 		";
 	
-	
-		
  	// run run run that query
 	$feedblogs = $wpdb->get_results( $custom_query );	
 	
 	// bail if we got nothing
 	if (count($feedblogs) == 0 ) {
-		$content =  "No blogs found for '"  . $mycat->name . "'" . '<br />' . $custom_query;
+		$content =  "No blogs found for '"  . $mycat->name . "'";
 		
 	// we got feeds!
 	} else {
 	
-		if ($show == "random") {
+	
+		if ( $orderby == "newest" ) {
+		
+			$suffix = ' from <strong>' .  get_feed_count()  . '</strong> total blogs syndicated into this site, listed below with the newest ones added first: ';
+			
+	
+		} elseif ($orderby == "random") {
 			// for a random subset we want to reference a count of all blogs on the site; 
-			// in this site we have 2 feeds that are not blogs, so pass that as a parameter
-			// (more hard coding specific to this site, sigh)
+
 			$suffix = ' from <strong>' .  get_feed_count()  . '</strong> total blogs syndicated into this site. A few random ones are listed below: ';
+		
 		} else {
 		
 			// let's be grammatically correct for only one blog
 			$plural = ( (count($feedblogs) == 1 ) ) ? '' : 's';
 			
-			
 			$suffix = ' from <strong>' .  count($feedblogs) . '</strong> blog' . $plural  . '. ';
 		}
+		
+		// link to page for all blogs
+		if ($count != 'all') {
+			$footer = '<br /><br/><a href="' . site_url() . '/' . $blogslug .'" class="button">See All Blogs...</a></p>';
+		}
+
 	
 		// Yikes, we use the "Count Posts in a Category, Tag, or Custom Taxonomy" plugin to get a total post count
 		$content = '<p>This site includes <strong>' .  do_shortcode('[cat_count slug ="'. $mycat->slug . '"]') . '</strong> total post(s) syndicated for <strong>' . $mycat->name . '</strong>' .  $suffix . '</p>';
 		
+
+		
 		//start the output
 		$content .= "<ol style=\"padding:1.5em;\">\n";
 		
-		if ($show == 'all') {
-			// output each item as a list item, title of blog linked to URL, and a description
-			foreach ( $feedblogs as $item ) {
-				$content  .=  '<li><strong><a href="' . htmlspecialchars($item->link_url)   . '">' . htmlspecialchars_decode($item->link_name)  . '</a></strong> <em>' . htmlspecialchars_decode($item->link_description) . '</em>  (' . htmlspecialchars($item->link_url)  . ')</li>' . "\n";              
-			}
-		
-		} else {		
-			// output each item as a list item, title of blog linked to URL 
+		if ( $authorlink == "yes") {
+			// output with author link (e.g. page) 
+					
 			foreach ( $feedblogs as $item ) {
 			
+				// Alan's hack to deal with search strings with \n in them
+				$author_notes = str_replace( '\n', 'XxxX', $item->link_notes);
+				
+				// fish through the link notes for the author info
+				preg_match ( '/map authors: nameXxxX(.*)XxxX([0-9]+)/' , $author_notes , $matches);
+				
+				// look for the authors info in the notes
+				if ( count( $matches ) ) {
+				
+					// build output link
+					$authorlink =  ' (see all syndicated posts by <a href="' . get_site_url() .'/author/' . sanitize_title( get_the_author_meta('user_login', $matches[2]) ) . '">' . get_the_author_meta('display_name', $matches[2]). '</a>)';
+				} else {
+					$authorlink = '';
+				}
+				
+				$content  .=  '<li><a href="' . htmlspecialchars($item->link_url)   . '">' . htmlspecialchars_decode($item->link_name)  . '</a>' . $authorlink . '</li>' . "\n";              
+			}
+		
+		} else {
+			// output without author link (e.g. widget) 
+			
+			foreach ( $feedblogs as $item ) {
 				$content  .=  '<li><a href="' . htmlspecialchars($item->link_url)   . '">' . htmlspecialchars_decode($item->link_name)  . '</a></li>' . "\n";              
 			}
 		}
-		
 		// clean up after your lists
-		$content .= '</ol>' . $footer .  '<hr /><p>Give some comment love to <a href="' . get_site_url() . '/random/?group=' . $catid . '" target="_blank">a random post from "' . $mycat->name . '"</a></p>'; 
+		$content .= '</ol>' . $footer .  '<p>Give some comment love to <a href="' . get_site_url() . '/random/?group=' . $catid . '" target="_blank">a random post from "' . $mycat->name . '"</a></p>'; 
 		
 		
 	}		

@@ -60,7 +60,7 @@
 	if ( have_posts() ) { $count = 0;
 ?>
 <div id="more-news" class="col-full">
-<h2 class="section-title">Recent Thought Vectors Tagged "<?php echo $woo_slider_tags?>"</h2>
+<h2 class="section-title">Recent Posts from the Network Tagged "<?php echo $woo_slider_tags?>"</h2>
 <?php
 	$date_format = get_option( 'date_format' );
 	

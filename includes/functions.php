@@ -43,8 +43,8 @@ function tv_modify_profile( $profile_fields ) {
 
 	// Add new fields
 	$profile_fields['twitter'] = 'Twitter Username';
-	$profile_fields['blog'] = 'Thought Vectors Blog';
-	$profile_fields['blogfeed'] = 'Thought Vectors Blog Feed';
+	$profile_fields['blog'] = 'Blog';
+	$profile_fields['blogfeed'] = 'Blog Feed';
 	$profile_fields['geolocation'] = 'Geographical Location';
 
 	return $profile_fields;
