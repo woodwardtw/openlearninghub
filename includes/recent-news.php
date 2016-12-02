@@ -144,7 +144,7 @@
 	        
 	        <h2 class="title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 	        
-	        <p class="fwp-source">by <a href="http://twitter.com/<?php echo $author_twname?>" class="twitter">@<?php echo $author_twname?></a></p>
+	        <p class="fwp-source">by <a href="/author/<?php echo $author_twname?>"><?php echo $author_twname?></a>  <a href="http://twitter.com/<?php echo $author_twname?>" class="twitter"></a></p>
 	        
 	        <?php if ( isset( $woo_options['woo_post_content'] ) && $woo_options['woo_post_content'] != 'content' ) woo_image( 'width=' . $woo_options['woo_thumb_w'] . '&height=' . $woo_options['woo_thumb_h'] . '&class=thumbnail ' . $woo_options['woo_thumb_align'] ); ?>
 	        
