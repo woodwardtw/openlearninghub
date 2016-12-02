@@ -424,7 +424,7 @@ if(!function_exists('load_my_script')){
         $deps = array('jquery');
         $version= '1.0'; 
         $in_footer = true;
-        wp_enqueue_script('my-script', get_stylesheet_directory_uri() . 'functions/js/toms-extras.js', $deps, $version, $in_footer);
+        wp_enqueue_script('my-script', get_stylesheet_directory_uri() . '/functions/js/toms-extras.js', $deps, $version, $in_footer);
         wp_localize_script('my-script', 'my_script_vars', array(
                 'postID' => $post->ID
             )
