@@ -1097,6 +1097,13 @@ div.active {
 }
 
 
+.listing-item a.title {
+  display: block;
+  color: #424242;
+  font-size: 1.4em;
+}
+
+
 @media (min-width: 701px), (max-width: 8300px) {
 	#main{width:610px;}
 	#main.fullwidth, .layout-full #main, .col-full {width: 940px; margin:0 auto;}
