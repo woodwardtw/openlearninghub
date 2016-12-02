@@ -425,6 +425,7 @@ function add_blog_to_fwp( $entry, $form ) {
 
 }
 
+
 if(!function_exists('load_my_script')){
     function load_my_script() {
         global $post;
