@@ -295,20 +295,27 @@ function add_blog_to_fwp( $entry, $form ) {
 		// Get the link category we will use for pending feeds
 		// NOTE: There needs to be at least one link in there to find the category
 
+		/*
 		$fwp_link_category = get_terms( 'link_category', array(
 			'name__like'    => 'Pending',
 		 ) );
+		 
+		 */
+		 
+		 $contrib_category = 120;
 	
 	} else {
 		// Get the link category Feed Wordpress uses to store feed data
 	
+		/*
 		$fwp_link_category = get_terms( 'link_category', array(
 			'name__like'    => 'Contributors',
 		 ) );
+		 */
+		 
+		 $contrib_category = 3;
 	}
 	
-	// make that an integer, pal
-	$contrib_category = intval($fwp_link_category[0]->term_id);
 
 	// set filters aside for input
 	remove_filter('pre_link_rss', 'wp_filter_kses');
