@@ -202,13 +202,13 @@ function openlearnhub_feedroll( $atts ) {
 	
 		if ( $orderby == "newest" ) {
 		
-			$suffix = ' from <strong>' .  get_feed_count()  . '</strong> total blogs syndicated into this site, listed below with the newest ones added first: ';
+			$suffix = ' from <strong>' .  get_feed_count()  . '</strong> total blogs syndicated into this site, listed below in the order of most recently added: ';
 			
 	
 		} elseif ($orderby == "random") {
 			// for a random subset we want to reference a count of all blogs on the site; 
 
-			$suffix = ' from <strong>' .  get_feed_count()  . '</strong> total blogs syndicated into this site. A few random ones are listed below: ';
+			$suffix = ' from <strong>' .  get_feed_count()  . '</strong> total blogs syndicated into this site, including the random sites listed below: ';
 		
 		} else {
 		

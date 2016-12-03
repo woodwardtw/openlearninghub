@@ -180,6 +180,25 @@
 	<?php
 			} // End WHILE Loop
 			
+			// do we have at least enough posts to go to page 2 of archive?
+			
+			if ( $count == $total_posts ) {
+			
+				// is it all posts?
+			   if ( $woo_current_category === 0 ) {
+			   		// use default syndicated category
+			   		$catlink = get_category_link( DEFCATID );
+			   		$catname = get_cat_name( DEFCATID );
+			   } else {
+			   		// use this category in view
+			   		$catlink = get_category_link( $woo_current_category );
+			   		$catname = get_cat_name( $woo_current_category );
+			   } // end is all posts
+			    
+			   echo '<p style="text-align:right"><a href="' . $catlink . 'page/2" class="button">More Posts from ' . $catname  . '...</a></p>';
+			
+			} // end count == total_posts
+			
 			// If we've got the slider enabled, exclude the slider posts.
 			if ( isset( $woo_options['woo_slider'] ) && $woo_options['woo_slider'] == 'true' ) {
 				$exclude_from_morenews = array_merge( $exclude_from_morenews, $exclude ); // Make sure the slider posts don't display in "More News" either.

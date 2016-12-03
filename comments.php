@@ -44,11 +44,7 @@ if ( post_password_required() ) { ?>
 
 		<?php if ( 'open' == $post->comment_status) { ?>
 			<!-- If comments are open, but there are no comments. -->
-			<p class="nocomments"><?php _e( 'No comments yet.', 'woothemes' ); ?></p>
-
-		<?php } else { // comments are closed ?>
-			<!-- If comments are closed. -->
-			<p class="nocomments"><?php _e( 'Comments are closed.', 'woothemes' ); ?></p>
+			<p class="nocomments"><?php _e( 'There are comments yet... maybe you can be the first?', 'woothemes' ); ?></p>
 
 		<?php } ?>
 
