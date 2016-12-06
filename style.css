@@ -2161,11 +2161,15 @@ div.active {
 }
 
 
-/*address slide overflow on single */
+/* address slide overflow on single */
 .slide .entry {
   max-height: 250px;
 }
 
+/* address duplicate excerpt display */
+.intro-paragraph {
+display:none;
+}
 
 @media (min-width: 701px), (max-width: 8300px) {
 
